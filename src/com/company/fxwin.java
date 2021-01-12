@@ -1,3 +1,4 @@
+//This is the Main file to run in ide
 package com.company;
 
 import animatefx.animation.*;
