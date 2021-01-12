@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="ibox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="1294.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane fx:id="ipane" prefHeight="874.0" prefWidth="1294.0" style="-fx-background-color: #020304;">
+         <children>
+            <Line endX="-94.0" endY="846.0" layoutX="230.0" layoutY="19.0" startX="-94.0" startY="-16.999996185302734" stroke="#1e0f59" strokeWidth="5.0" />
+            <Button fx:id="usetime" layoutX="2.0" layoutY="2.0" mnemonicParsing="false" onAction="#setUsetime" prefHeight="215.0" prefWidth="131.0" style="-fx-background-color: #1874CD;" text="Restrict Usage " textFill="WHITE">
+               <effect>
+                  <InnerShadow blurType="ONE_PASS_BOX" />
+               </effect>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="monitor" layoutX="2.0" layoutY="436.0" mnemonicParsing="false" onAction="#setMonitor" prefHeight="215.0" prefWidth="131.0" style="-fx-background-color: #1874CD;" text="Network Monitor" textFill="WHITE">
+               <effect>
+                  <InnerShadow blurType="ONE_PASS_BOX" />
+               </effect>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="turn" layoutX="2.0" layoutY="219.0" mnemonicParsing="false" onAction="#setTurn" prefHeight="215.0" prefWidth="131.0" style="-fx-background-color: #1874CD;" text="Internet ON/OFF" textFill="WHITE">
+               <effect>
+                  <InnerShadow blurType="ONE_PASS_BOX" />
+               </effect>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="downloadmode" layoutX="2.0" layoutY="653.0" mnemonicParsing="false" onAction="#setDownloadmode" prefHeight="210.0" prefWidth="131.0" style="-fx-background-color: #1874CD;" text="Download Mode" textFill="WHITE">
+               <effect>
+                  <InnerShadow blurType="ONE_PASS_BOX" />
+               </effect>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="537.0" layoutY="11.0" prefHeight="119.0" prefWidth="499.0" text="Internet Access Control" textFill="WHITE">
+               <font>
+                  <Font size="40.0" />
+               </font>
+            </Label>
+            <Spinner fx:id="minutesf" editable="true" layoutX="458.0" layoutY="357.0" max="60" min="0" prefHeight="59.0" prefWidth="101.0" />
+            <Spinner fx:id="hourst" editable="true" layoutX="958.0" layoutY="357.0" max="24" min="0" prefHeight="59.0" prefWidth="101.0" />
+            <Spinner fx:id="minutest" editable="true" layoutX="1092.0" layoutY="357.0" max="60" min="0" prefHeight="59.0" prefWidth="101.0" />
+            <Label fx:id="from" layoutX="374.0" layoutY="254.0" prefHeight="67.0" prefWidth="162.0" text="From" textFill="WHITE">
+               <font>
+                  <Font size="56.0" />
+               </font>
+            </Label>
+            <Label fx:id="to" layoutX="1038.0" layoutY="254.0" prefHeight="89.0" prefWidth="83.0" text="TO" textFill="WHITE">
+               <font>
+                  <Font size="56.0" />
+               </font>
+            </Label>
+            <Button fx:id="restrict" layoutX="684.0" layoutY="477.0" mnemonicParsing="false" onAction="#setRestrict" prefHeight="73.0" prefWidth="185.0" style="-fx-background-color: #008080;" text="Restrict" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <CheckBox fx:id="wblock" layoutX="667.0" layoutY="574.0" mnemonicParsing="false" onAction="#setWblock" prefHeight="42.0" prefWidth="268.0" text="With Blocking" textFill="WHITE">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </CheckBox>
+            <Spinner fx:id="hoursf" editable="true" layoutX="324.0" layoutY="357.0" max="24" min="0" prefHeight="59.0" prefWidth="101.0" />
+            <Label fx:id="in" layoutX="704.0" layoutY="728.0" prefHeight="30.0" prefWidth="171.0" text="Worthless Input!" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Button fx:id="back" layoutX="1180.0" layoutY="49.0" mnemonicParsing="false" onAction="#goback" prefHeight="42.0" prefWidth="83.0" style="-fx-background-color: #008080;" text="Go Back" textFill="WHITE" />
+            <Button fx:id="downdis" layoutX="2.0" layoutY="653.0" mnemonicParsing="false" prefHeight="210.0" prefWidth="131.0" style="-fx-background-color: #1874CD;" text="Disabled!" textFill="WHITE" />
+            <Label fx:id="parcontrol" layoutX="643.0" layoutY="743.0" prefHeight="73.0" prefWidth="315.0" text="Parental Control Enabled!" textFill="WHITE">
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Label>
+            <Button fx:id="on" layoutX="482.0" layoutY="346.0" mnemonicParsing="false" onAction="#setOn" prefHeight="82.0" prefWidth="185.0" style="-fx-background-color: #008080;" text="Turn ON" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+            <Button fx:id="off" layoutX="726.0" layoutY="346.0" mnemonicParsing="false" onAction="#setOff" prefHeight="82.0" prefWidth="185.0" style="-fx-background-color: #008080;" text="Turn OFF" textFill="WHITE">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</VBox>

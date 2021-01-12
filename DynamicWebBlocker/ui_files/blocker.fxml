@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="1294.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane fx:id="bpane" prefHeight="868.0" prefWidth="1136.0" style="-fx-background-color: #020304;" stylesheets="@../Videos/buttontest.css">
+         <children>
+            <Label layoutX="536.0" layoutY="31.0" prefHeight="107.0" prefWidth="383.0" style="-fx-text-fill: #ffffff;" text="Blocker">
+               <font>
+                  <Font size="89.0" />
+               </font>
+            </Label>
+            <Line endX="-161.0" endY="583.0" layoutX="298.0" layoutY="280.0" startX="-161.0" startY="-269.0" stroke="#1e0f59" strokeWidth="5.0" style="-fx-blend-mode: #ffffff;" />
+            <Button fx:id="start" layoutX="2.0" layoutY="4.0" mnemonicParsing="false" onAction="#startButton" prefHeight="123.0" prefWidth="131.0" style="-fx-background-color: #1874CD;" text="Start" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <effect>
+                  <InnerShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </Button>
+            <Button fx:id="dblock" layoutX="2.0" layoutY="129.0" mnemonicParsing="false" onAction="#setdblock" prefHeight="123.0" prefWidth="131.0" style="-fx-background-color: #1874CD;" text="Dynamic Block" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <effect>
+                  <InnerShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </Button>
+            <Button fx:id="ublock" layoutX="2.0" layoutY="254.0" mnemonicParsing="false" onAction="#setUblock" prefHeight="134.0" prefWidth="131.0" style="-fx-background-color: #1874CD;" text="URL Block" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <effect>
+                  <InnerShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </Button>
+            <Button fx:id="sproxy" layoutX="2.0" layoutY="390.0" mnemonicParsing="false" onAction="#setSproxy" prefHeight="152.0" prefWidth="131.0" style="-fx-background-color: #1874CD;" text="Stop Proxy" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <effect>
+                  <InnerShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </Button>
+            <Button fx:id="iaccess" layoutX="2.0" layoutY="544.0" mnemonicParsing="false" onAction="#setIaccess" prefHeight="152.0" prefWidth="131.0" style="-fx-background-color: #1874CD;" text="Internet Access " textFill="WHITE">
+               <effect>
+                  <InnerShadow blurType="ONE_PASS_BOX" />
+               </effect>
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button fx:id="pcontrol" layoutX="2.0" layoutY="698.0" mnemonicParsing="false" onAction="#setPcontrol" prefHeight="168.0" prefWidth="131.0" style="-fx-background-color: #1874CD;" text="Parental Control" textFill="WHITE">
+               <effect>
+                  <InnerShadow blurType="ONE_PASS_BOX" />
+               </effect>
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+            <Button fx:id="startb" layoutX="607.0" layoutY="448.0" mnemonicParsing="false" onAction="#setStartb" prefHeight="63.0" prefWidth="149.0" style="-fx-background-color: #008080; -fx-background-radius: 150;" text="Start Blocking" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="stopb" layoutX="584.0" layoutY="524.0" mnemonicParsing="false" onAction="#setStopb" prefHeight="63.0" prefWidth="196.0" style="-fx-background-color: #008080; -fx-background-radius: 150;" text="Stop Blocking" textFill="#ebebeb">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="ddisable" layoutX="2.0" layoutY="129.0" mnemonicParsing="false" prefHeight="123.0" prefWidth="131.0" style="-fx-background-color: #1874CD;" text="Disabled!" textFill="WHITE">
+               <effect>
+                  <InnerShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </Button>
+            <Button fx:id="udisable" layoutX="2.0" layoutY="254.0" mnemonicParsing="false" prefHeight="134.0" prefWidth="131.0" style="-fx-background-color: #1874CD;" text="Disabled!" textFill="WHITE">
+               <effect>
+                  <InnerShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </Button>
+            <TextField fx:id="keyword" layoutX="389.0" layoutY="372.0" prefHeight="73.0" prefWidth="613.0" />
+            <Button fx:id="blockk" layoutX="461.0" layoutY="466.0" mnemonicParsing="false" onAction="#setBlockk" prefHeight="73.0" prefWidth="185.0" style="-fx-background-color: #008080;" text="Block" textFill="WHITE">
+               <effect>
+                  <InnerShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </Button>
+            <Button fx:id="keycontents" layoutX="707.0" layoutY="466.0" mnemonicParsing="false" onAction="#setKeycontents" prefHeight="73.0" prefWidth="185.0" style="-fx-background-color: #008080;" text="Show Keywords" textFill="WHITE">
+               <effect>
+                  <InnerShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </Button>
+            <Button fx:id="keyclear" layoutX="589.0" layoutY="569.0" mnemonicParsing="false" onAction="#setKeyclear" prefHeight="73.0" prefWidth="183.0" style="-fx-background-color: #008080;" text="Clear File" textFill="WHITE">
+               <effect>
+                  <InnerShadow blurType="ONE_PASS_BOX" />
+               </effect>
+            </Button>
+            <TextArea fx:id="urls" layoutX="216.0" layoutY="195.0" prefHeight="253.0" prefWidth="959.0" />
+            <Button fx:id="urlblock" layoutX="461.0" layoutY="466.0" mnemonicParsing="false" onAction="#setUrlblock" prefHeight="73.0" prefWidth="185.0" style="-fx-background-color: #008080;" text="url block" textFill="WHITE" />
+            <Button fx:id="urlclear" layoutX="589.0" layoutY="569.0" mnemonicParsing="false" onAction="#setUrlclear" prefHeight="73.0" prefWidth="185.0" style="-fx-background-color: #008080;" text="clear file" textFill="WHITE" />
+            <Button fx:id="urlcontents" layoutX="707.0" layoutY="466.0" mnemonicParsing="false" onAction="#setUrlcontents" prefHeight="73.0" prefWidth="185.0" style="-fx-background-color: #008080;" text="show urls" textFill="WHITE" />
+            <ToggleButton fx:id="moderate" layoutX="474.0" layoutY="390.0" mnemonicParsing="false" onAction="#setModerate" prefHeight="73.0" prefWidth="185.0" style="-fx-background-color: #008080;" text="Moderate" textFill="WHITE" />
+            <ToggleButton fx:id="strict" layoutX="694.0" layoutY="390.0" mnemonicParsing="false" onAction="#setStrict" prefHeight="73.0" prefWidth="185.0" style="-fx-background-color: #008080;" text="Strict" textFill="WHITE" />
+            <CheckBox fx:id="penable" layoutX="483.0" layoutY="260.0" mnemonicParsing="false" onAction="#setPenable" prefHeight="101.0" prefWidth="448.0" text="Enable Parental Control" textFill="WHITE">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </CheckBox>
+            <Label fx:id="plabel" layoutX="553.0" layoutY="732.0" prefHeight="73.0" prefWidth="336.0" text="Parental Control Enabled!" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Label fx:id="selmode" layoutX="570.0" layoutY="680.0" prefHeight="73.0" prefWidth="302.0" text="First, select a mode" textFill="WHITE">
+               <font>
+                  <Font size="21.0" />
+               </font>
+            </Label>
+            <Button fx:id="settings" layoutX="1225.0" layoutY="795.0" mnemonicParsing="false" onAction="#setSettings" prefHeight="53.0" prefWidth="55.0" style="-fx-background-color: #008080; -fx-background-radius: 100;" textFill="WHITE">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <effect>
+                  <InnerShadow blurType="ONE_PASS_BOX" />
+               </effect>
+               <graphic>
+                  <ImageView fitHeight="37.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@settings.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="rotator" layoutX="641.0" layoutY="349.0" mnemonicParsing="false" onAction="#rotator" prefHeight="79.0" prefWidth="80.0" style="-fx-background-color: #008080; -fx-background-radius: 150;">
+               <graphic>
+                  <ImageView fitHeight="51.0" fitWidth="57.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@iconfinder_plus-add-new-create-attach-maximize_2931155-2.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</VBox>
