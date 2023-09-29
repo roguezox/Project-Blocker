@@ -2,12 +2,15 @@ package ui.screens
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import data.main.mainModel
+import styles.Colors
 import styles.RoveTypography
 import java.awt.Toolkit
 
@@ -36,6 +39,36 @@ fun home(){
 
                 )
             }
+            Column (
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ){
+                OutlinedButton(
+                    modifier = Modifier.fillMaxWidth(0.23f)
+                        .height(40.dp)
+                        .padding(bottom = 5.dp)
+                    ,
+                    shape = RoundedCornerShape(40.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = Colors().buttonColor
+                    ),
+                    onClick = {
+
+                    }
+                ){
+                    Text(
+                        "Connect",
+                        style = RoveTypography.body1
+                    )
+                }
+
+                Text(
+                    text = ""
+                )
+
+            }
+
         }
     }
 }
