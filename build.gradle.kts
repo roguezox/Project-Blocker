@@ -20,6 +20,9 @@ dependencies {
     // compose.desktop.currentOs should be used in launcher-sourceSet
     // (in a separate module for demo project and in testMain).
     // With compose.desktop.common you will also lose @Preview functionality
+    implementation("com.lordcodes.turtle:turtle:0.5.0")
+    implementation ("org.apache.commons:commons-exec:1.3")
+
 
     api("dev.icerock.moko:mvvm-core:0.16.1") // only ViewModel, EventsDispatcher, Dispatchers.UI
     api("dev.icerock.moko:mvvm-compose:0.16.1")
