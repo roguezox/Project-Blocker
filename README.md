@@ -1,7 +1,14 @@
 # Project-Blocker
 
-This is the source code for Dynamic Web Blocker 
+New version of Project Blocker is under development. This a network control software which will have
+the capability to accurately block websites based on keywords, and create timers to restrict network access.
 
-Copy the Folder DynamicWebBlocker to home directory to start developing the software from your ide
+### FlowChart
+![Blocker.png](..%2F..%2FDownloads%2FBlocker.png)
 
-For more software information and documentation visit : https://ak9001099436.wixsite.com/mysite
+**Languages Used: Kotlin, Python** 
+
+**FrameWork Used: Compose Multiplatform**
+
+### Contribute to the project:
+To start developing for this project, clone the repository in IntelliJ Idea and start developing on the branch BlockerV2

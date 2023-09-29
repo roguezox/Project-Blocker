@@ -24,6 +24,7 @@ import kotlinx.coroutines.flow.compose
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+import styles.Colors
 import styles.RoveTypography
 import ui.screens.home
 import java.awt.Dimension
@@ -62,7 +63,7 @@ fun main() = application {
                 modifier = Modifier.fillMaxSize().background(color = Color(0xff27282A))
             ) {
                 Column(
-                    modifier = Modifier.fillMaxHeight().fillMaxWidth(0.25f),
+                    modifier = Modifier.fillMaxHeight().fillMaxWidth(0.22f),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Spacer(modifier = Modifier.size((height * 0.018).dp))
@@ -115,7 +116,7 @@ fun main() = application {
                         shape = RoundedCornerShape(40.dp),
                         colors = ButtonDefaults.buttonColors(
                             backgroundColor = if (stateModel.home) {
-                                Color(0xff2EA8EC)
+                                Colors().buttonColor
 
                             } else {
                                 Color.Transparent
@@ -163,7 +164,7 @@ fun main() = application {
                         shape = RoundedCornerShape(40.dp),
                         colors = ButtonDefaults.buttonColors(
                             backgroundColor = if (stateModel.blocker) {
-                                Color(0xff2EA8EC)
+                                Colors().buttonColor
 
                             } else {
                                 Color.Transparent
@@ -210,7 +211,7 @@ fun main() = application {
                         shape = RoundedCornerShape(40.dp),
                         colors = ButtonDefaults.buttonColors(
                             backgroundColor = if (stateModel.restrict) {
-                                Color(0xff2EA8EC)
+                                Colors().buttonColor
 
                             } else {
                                 Color.Transparent
@@ -257,7 +258,7 @@ fun main() = application {
                         shape = RoundedCornerShape(40.dp),
                         colors = ButtonDefaults.buttonColors(
                             backgroundColor = if (stateModel.summary) {
-                                Color(0xff2EA8EC)
+                                Colors().buttonColor
 
                             } else {
                                 Color.Transparent
@@ -304,7 +305,7 @@ fun main() = application {
                         shape = RoundedCornerShape(40.dp),
                         colors = ButtonDefaults.buttonColors(
                             backgroundColor = if (stateModel.monitor) {
-                                Color(0xff2EA8EC)
+                                Colors().buttonColor
 
                             } else {
                                 Color.Transparent
@@ -352,7 +353,7 @@ fun main() = application {
                         shape = RoundedCornerShape(40.dp),
                         colors = ButtonDefaults.buttonColors(
                             backgroundColor = if (stateModel.settings) {
-                                Color(0xff2EA8EC)
+                                Colors().buttonColor
 
                             } else {
                                 Color.Transparent
@@ -406,7 +407,7 @@ fun main() = application {
                                 .background(color = Color(0xff4D4D4D))
                         )
                         Text(
-                            "Version 1.0",
+                            "Version 2.0",
                             modifier = Modifier.padding(bottom = 20.dp),
                             style = RoveTypography.body2
                         )
