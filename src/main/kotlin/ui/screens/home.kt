@@ -14,12 +14,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import data.home.homeModel
 import data.main.mainModel
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import mitmInterfaces.mitmInterface
 import styles.Colors
 import styles.RoveTypography
 import java.awt.Toolkit
+import java.net.Inet4Address
 
 @Composable
 @Preview
@@ -64,14 +66,24 @@ fun home(){
                         backgroundColor = Colors().buttonColor
                     ),
                     onClick = {
-                        if()
+                        if(stateModel.isConnected){
+                            viewModel.defaultDisconnect()
+                        } else {
+                            viewModel.defaultConnect()
+
+                        }
                     }
                 ){
                     Text(
-                        "Connect",
+                        text = stateModel.button,
                         style = RoveTypography.body1
                     )
                 }
+                Spacer(modifier = Modifier.size(4.dp))
+                Text(
+                    text = stateModel.status,
+                    style = RoveTypography.body2
+                )
 
 
 
