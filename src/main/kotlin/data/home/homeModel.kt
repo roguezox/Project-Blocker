@@ -35,11 +35,9 @@ class homeModel: ViewModel() {
 
     fun defaultConnect() {
             mitmInterface().defaultStart()
-            if(Inet4Address.getLocalHost().isReachable(3000)){
-                _homeState.update {curentState->
-                    curentState.copy(isConnected = true,"Connected to localhost: 127.0.0.1","Disconnect")
-                }
-            }
+        _homeState.update {curentState->
+            curentState.copy(isConnected = true,"Connected to localhost: 127.0.0.1","Disconnect")
+        }
 
     }
 

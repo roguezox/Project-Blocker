@@ -4,36 +4,32 @@ import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import data.home.homeModel
-import data.main.mainModel
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import mitmInterfaces.mitmInterface
+import dev.icerock.moko.mvvm.viewmodel.ViewModel
+import kotlinx.coroutines.flow.StateFlow
 import styles.Colors
 import styles.RoveTypography
 import java.awt.Toolkit
-import java.net.Inet4Address
 
 @Composable
 @Preview
-fun home(){
+fun home(
+   viewModel: homeModel,
+
+) {
     val configuration= Toolkit.getDefaultToolkit().screenSize
     val width = configuration.width
     val height= configuration.height
 
-    val viewModel = remember { homeModel() }
+
     val stateModel by viewModel.homeState.collectAsState()
 
     MaterialTheme(
+
     ) {
         Column(
             modifier = Modifier.fillMaxWidth().fillMaxHeight()
