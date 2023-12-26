@@ -12,10 +12,11 @@ repositories {
     mavenCentral()
     maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     google()
+
 }
 
 dependencies {
-    val lifecycle_version = "2.6.2"
+
     // Note, if you develop a library, you should use compose.desktop.common.
     // compose.desktop.currentOs should be used in launcher-sourceSet
     // (in a separate module for demo project and in testMain).
@@ -28,6 +29,8 @@ dependencies {
     api("dev.icerock.moko:mvvm-compose:0.16.1")
     implementation ("org.xerial:sqlite-jdbc:3.34.0")
     implementation(compose.desktop.windows_x64)
+    implementation("org.jetbrains.compose.ui:ui-tooling-preview:1.4.1")
+
     implementation("org.jetbrains.kotlinx:dataframe-jdbc:0.13.0-dev-2617")
 }
 

@@ -1,6 +1,5 @@
 import androidx.compose.animation.*
 import androidx.compose.animation.core.MutableTransitionState
-import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -11,38 +10,33 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalViewConfiguration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
-import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.application
-import androidx.compose.ui.window.rememberWindowState
 import data.blocker.blockerModel
 import data.home.homeModel
 import data.main.mainModel
-import data.main.mainState
-import dev.icerock.moko.mvvm.viewmodel.ViewModel
-import kotlinx.coroutines.flow.compose
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
+import data.restrict.restrictModel
 import styles.Colors
 import styles.RoveTypography
 import ui.screens.blocker
 import ui.screens.home
+import ui.screens.restrict
 import java.awt.Dimension
 import java.awt.Toolkit
 
 @Composable
-fun App(){}
+fun App(){
+    main()
+}
 
 
 
 fun main() = application {
     val homeModel = remember { homeModel() }
     val blockerModel= remember { blockerModel() }
+    val restricModel= remember { restrictModel() }
 
     Window(
         onCloseRequest = ::exitApplication,
@@ -452,6 +446,19 @@ fun main() = application {
                             exit = fadeOut(),
                         ) {
                             blocker(blockerModel)
+                        }
+                    }
+                    else if(stateModel.restrict){
+                        blockerModel.reset()
+                        AnimatedVisibility(
+                            visibleState = MutableTransitionState(
+                                initialState = false
+                            ).apply { targetState = true },
+                            modifier = Modifier,
+                            enter = fadeIn(initialAlpha = 0f),
+                            exit = fadeOut(),
+                        ) {
+                            restrict(restricModel)
                         }
                     }
 

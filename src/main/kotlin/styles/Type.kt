@@ -23,6 +23,10 @@ val RoveTypography= Typography(
 
         fontSize = 20.sp
     ),
+    h6 = TextStyle(
+        fontSize = 17.sp,
+        color = Color(0xff737373)
+    ),
     body1 = TextStyle(
 
         fontSize = 13.sp,

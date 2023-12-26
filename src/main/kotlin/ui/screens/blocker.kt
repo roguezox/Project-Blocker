@@ -1,8 +1,8 @@
 package ui.screens
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.EnterTransition
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -16,9 +16,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import components.button.button
 import data.blocker.blockerListModel
 import data.blocker.blockerModel
-import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import styles.Colors
 import styles.RoveTypography
 import java.awt.Toolkit
@@ -45,7 +45,7 @@ fun blocker(
     if(!stateModel.once){
         val query= "SELECT * FROM user"
         val initiater= stateModel.connection.prepareStatement(query)
-        var rs = initiater.executeQuery()
+        val rs = initiater.executeQuery()
 
 
 
@@ -76,11 +76,32 @@ fun blocker(
     }
 
     MaterialTheme (){
+
+        Column(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Spacer(modifier = Modifier.size((height*0.018).dp))
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    modifier = Modifier,
+                    text = "Blocker",
+                    style = RoveTypography.h2
+
+                )
+            }
+        }
+
         Column (
             modifier = Modifier.fillMaxWidth().fillMaxHeight(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ){
+            Spacer(modifier = Modifier.size((height*0.018).dp))
+
             Box(
                 modifier = Modifier.height((height*0.23).dp).width((width*0.25).dp).
                 background(Color(0xff4A4A4A), shape = RoundedCornerShape(30.dp)),
@@ -129,7 +150,7 @@ fun blocker(
             }
             Spacer(modifier = Modifier.size(25.dp))
             TextField(
-                modifier = Modifier.fillMaxWidth(0.5f).height(45.dp),
+                modifier = Modifier.width(((width*0.2).dp)).height(45.dp),
                 value = stateModel.keywordsFieldState,
                 onValueChange = {
                     viewModel.updateKeywords(it)
@@ -155,15 +176,7 @@ fun blocker(
 
                 )
             Spacer(modifier = Modifier.size(20.dp))
-            OutlinedButton(
-                modifier = Modifier.fillMaxWidth(0.23f)
-                    .height(45.dp)
-                    .padding(bottom = 5.dp)
-                ,
-                shape = RoundedCornerShape(40.dp),
-                colors = ButtonDefaults.buttonColors(
-                    backgroundColor = Colors().buttonColor
-                ),
+            button(
                 onClick = {
                     val values= stateModel.keywordsFieldState+";"
                     val word=values.split(";")
@@ -177,7 +190,7 @@ fun blocker(
                                 "WHERE user.keywords LIKE '$value';"
 
                         val dup = stateModel.connection.prepareStatement(dupcheck)
-                        var duplicate= dup.executeQuery()
+                        val duplicate= dup.executeQuery()
                         if (duplicate.next()){
                             snackstate.value=true
 
@@ -197,15 +210,9 @@ fun blocker(
                     }
 
 
-
-
-                }
-            ){
-                Text(
-                    text = "Block",
-                    style = RoveTypography.body1
-                )
-            }
+                },
+                text = "Block"
+            )
 
 
 
@@ -218,23 +225,32 @@ fun blocker(
 @Composable
 fun dialog(onDismiss: () -> Unit) {
     // Your dialog content
-    AlertDialog(
-        backgroundColor = Color(0xff555555),
-        onDismissRequest = onDismiss,
-        title = { Text("Duplicate Value!") },
-        shape = RoundedCornerShape(20.dp),
-        text = { Text("The database already contains this value") },
-        confirmButton = {
-            Button(onClick = onDismiss,
-                colors = ButtonDefaults.buttonColors(
-                    backgroundColor = Colors().buttonColor
-                ),
-                shape = RoundedCornerShape(40.dp)
-            ) {
-                Text("Dismiss",
-                    style = RoveTypography.body1)
+    AnimatedVisibility(
+        visibleState = MutableTransitionState(
+            initialState = false
+        ).apply { targetState = true },
+        modifier = Modifier,
+        enter = fadeIn(initialAlpha = 0f),
+        exit = fadeOut(),
+    ) {
+        AlertDialog(
+            backgroundColor = Color(0xff555555),
+            onDismissRequest = onDismiss,
+            title = { Text("Duplicate Value!") },
+            shape = RoundedCornerShape(20.dp),
+            text = { Text("The database already contains this value") },
+            confirmButton = {
+                Button(onClick = onDismiss,
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = Colors().buttonColor
+                    ),
+                    shape = RoundedCornerShape(40.dp)
+                ) {
+                    Text("Dismiss",
+                        style = RoveTypography.body1)
+                }
             }
-        }
-    )
+        )
+    }
 }
 
