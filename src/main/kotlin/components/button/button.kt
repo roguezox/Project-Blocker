@@ -14,9 +14,9 @@ import styles.Colors
 import styles.RoveTypography
 
 @Composable
-fun button(onClick:()->Unit, text: String){
+fun button(width: Float,onClick:()->Unit, text: String){
     OutlinedButton(
-        modifier = Modifier.fillMaxWidth(0.23f)
+        modifier = Modifier.fillMaxWidth(width)
             .height(40.dp)
             .padding(bottom = 5.dp)
         ,

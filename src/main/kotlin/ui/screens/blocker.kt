@@ -177,6 +177,7 @@ fun blocker(
                 )
             Spacer(modifier = Modifier.size(20.dp))
             button(
+                width = 0.23f,
                 onClick = {
                     val values= stateModel.keywordsFieldState+";"
                     val word=values.split(";")
@@ -198,7 +199,7 @@ fun blocker(
 
                         }
                         else{
-                            val statement = "INSERT INTO user VALUES('$value') "
+                            val statement = "INSERT INTO user(keywords) VALUES('$value') "
                             val prep= stateModel.connection.prepareStatement(statement)
                             listViewmodel.addValue(value)
                             prep.executeUpdate()

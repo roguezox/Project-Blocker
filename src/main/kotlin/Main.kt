@@ -59,7 +59,7 @@ fun main() = application {
 
 
             Row(
-                modifier = Modifier.fillMaxSize().background(color = Color(0xff27282A))
+                modifier = Modifier.fillMaxSize().background(color = Colors().primaryDark)
             ) {
                 Column(
                     modifier = Modifier.fillMaxHeight().fillMaxWidth(0.22f),
