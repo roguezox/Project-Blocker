@@ -49,6 +49,7 @@ fun home(
                 verticalArrangement = Arrangement.Center
             ){
                 button(
+                    width=0.23f,
                     onClick = {
                         if(stateModel.isConnected){
                             viewModel.defaultDisconnect()
