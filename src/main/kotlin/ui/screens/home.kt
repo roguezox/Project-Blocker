@@ -2,26 +2,30 @@ package ui.screens
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import data.main.mainModel
-import styles.Colors
+import components.button.button
+import data.home.homeModel
 import styles.RoveTypography
 import java.awt.Toolkit
 
 @Composable
 @Preview
-fun home(){
+fun home(
+   viewModel: homeModel,
+
+) {
     val configuration= Toolkit.getDefaultToolkit().screenSize
     val width = configuration.width
     val height= configuration.height
 
+    val stateModel by viewModel.homeState.collectAsState()
+
     MaterialTheme(
+
     ) {
         Column(
             modifier = Modifier.fillMaxWidth().fillMaxHeight()
@@ -44,28 +48,24 @@ fun home(){
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ){
-                OutlinedButton(
-                    modifier = Modifier.fillMaxWidth(0.23f)
-                        .height(40.dp)
-                        .padding(bottom = 5.dp)
-                    ,
-                    shape = RoundedCornerShape(40.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        backgroundColor = Colors().buttonColor
-                    ),
+                button(
                     onClick = {
+                        if(stateModel.isConnected){
+                            viewModel.defaultDisconnect()
+                        } else {
+                            viewModel.defaultConnect()
 
-                    }
-                ){
-                    Text(
-                        "Connect",
-                        style = RoveTypography.body1
-                    )
-                }
-
-                Text(
-                    text = ""
+                        }
+                    },
+                    text = stateModel.button
                 )
+                Spacer(modifier = Modifier.size(4.dp))
+                Text(
+                    text = stateModel.status,
+                    style = RoveTypography.body2
+                )
+
+
 
             }
 
