@@ -2,11 +2,12 @@ package components.restrictDialogbox
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -16,17 +17,26 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import components.button.button
+import data.restrict.restrictModel
 import styles.Colors
+import styles.RoveTypography
 
 class restrictDialog{
+
     @Composable
     fun restrictFromDialog(
-        onclose: () -> Unit
+        onclose: () -> Unit,
+        viewModel: restrictModel
     ){
+        var fromH by remember{ mutableStateOf("") }
+        var fromM by remember{ mutableStateOf("") }
+
+
         Dialog(
-            onCloseRequest = onclose
+            onCloseRequest = onclose,
+            title = "From"
         ){
+
             Column(
                 modifier = Modifier.fillMaxSize().background(color = Colors().primaryDarker),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -61,8 +71,13 @@ class restrictDialog{
                                 alignment = Alignment.CenterHorizontally
                             ),
                             singleLine = true,
-                            value = "",
-                            onValueChange = {},
+                            value =fromH,
+                            onValueChange = {fromH=it},
+                            textStyle = TextStyle(
+                                fontSize = 35.sp,
+                                fontWeight = FontWeight.Normal,
+                                color = Color(0xffffffff)
+                            ),
                             placeholder = {
                                 Text("00",
                                     modifier = Modifier,
@@ -128,8 +143,13 @@ class restrictDialog{
                                 alignment = Alignment.CenterHorizontally
                             ),
                             singleLine = true,
-                            value = "",
-                            onValueChange = {},
+                            value = fromM,
+                            onValueChange = {fromM=it},
+                            textStyle = TextStyle(
+                                fontSize = 35.sp,
+                                fontWeight = FontWeight.Normal,
+                                color = Color(0xffffffff)
+                            ),
                             placeholder = {
                                 Text("00",
                                     modifier = Modifier,
@@ -171,11 +191,27 @@ class restrictDialog{
                     }
                 }
 
-                button(
-                    width = 0.5f,
-                    onClick = {},
-                    text = "Save"
-                )
+                OutlinedButton(
+                    modifier = Modifier.fillMaxWidth(0.4f)
+                        .height(40.dp)
+                        .padding(bottom = 5.dp)
+                    ,
+                    shape = RoundedCornerShape(40.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = Colors().buttonColor
+                    ),
+                    onClick = {
+                        val from= "$fromH:$fromM"
+                        viewModel.savefrom(from)
+
+
+                    }
+                ){
+                    Text(
+                        text = "Save",
+                        style = RoveTypography.body1
+                    )
+                }
 
             }
 
@@ -184,9 +220,14 @@ class restrictDialog{
     }
 
     @Composable
-    fun restrictToDialog(onclose: ()-> Unit){
+    fun restrictToDialog(onclose: ()-> Unit,
+                         viewModel: restrictModel){
+        var toH by remember{ mutableStateOf("") }
+        var toM by remember{ mutableStateOf("") }
+
         Dialog(
-            onCloseRequest = onclose
+            onCloseRequest = onclose,
+            title = "To"
         ){
             Column(
                 modifier = Modifier.fillMaxSize().background(color = Colors().primaryDarker),
@@ -222,8 +263,15 @@ class restrictDialog{
                                 alignment = Alignment.CenterHorizontally
                             ),
                             singleLine = true,
-                            value = "",
-                            onValueChange = {},
+                            value = toH,
+                            onValueChange = {
+                                            toH=it
+                            },
+                            textStyle = TextStyle(
+                                fontSize = 35.sp,
+                                fontWeight = FontWeight.Normal,
+                                color = Color(0xffffffff)
+                            ),
                             placeholder = {
                                 Text("00",
                                     modifier = Modifier,
@@ -289,8 +337,16 @@ class restrictDialog{
                                 alignment = Alignment.CenterHorizontally
                             ),
                             singleLine = true,
-                            value = "",
-                            onValueChange = {},
+                            value = toM,
+                            onValueChange = {
+                                toM=it
+
+                            },
+                            textStyle = TextStyle(
+                                fontSize = 35.sp,
+                                fontWeight = FontWeight.Normal,
+                                color = Color(0xffffffff)
+                            ),
                             placeholder = {
                                 Text("00",
                                     modifier = Modifier,
@@ -332,11 +388,26 @@ class restrictDialog{
                     }
                 }
 
-                button(
-                    width = 0.5f,
-                    onClick = {},
-                    text = "Save"
-                )
+                OutlinedButton(
+                    modifier = Modifier.fillMaxWidth(0.4f)
+                        .height(40.dp)
+                        .padding(bottom = 5.dp)
+                    ,
+                    shape = RoundedCornerShape(40.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = Colors().buttonColor
+                    ),
+                    onClick = {
+                        val to= "$toH:$toM"
+                        viewModel.saveto(to)
+
+                    }
+                ){
+                    Text(
+                        text = "Save",
+                        style = RoveTypography.body1
+                    )
+                }
 
             }
 
@@ -344,3 +415,5 @@ class restrictDialog{
         }
     }
 }
+
+

@@ -7,9 +7,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -17,6 +15,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import components.restrictDialogbox.restrictDialog
+import data.blocker.blockerModel
 import data.restrict.restrictModel
 import styles.Colors
 import styles.RoveTypography
@@ -25,23 +24,41 @@ import java.awt.Toolkit
 @Composable
 
 fun restrict(
-    viewModel: restrictModel
+    viewModel: restrictModel,
+    blockerModel: blockerModel
 ) {
     val tostate = remember { mutableStateOf(false) }
     val fromstate=remember { mutableStateOf(false) }
     val configuration = Toolkit.getDefaultToolkit().screenSize
     val width = configuration.width
     val height = configuration.height
-
+    val restrictState by viewModel.restrictState.collectAsState()
+    val blockerState by blockerModel.blockerState.collectAsState()
     if (tostate.value) {
         restrictDialog().restrictToDialog(
-            onclose = { tostate.value = false }
+            onclose = { tostate.value = false },
+            viewModel
         )
     }
     if (fromstate.value) {
         restrictDialog().restrictFromDialog(
-            onclose = { fromstate.value = false }
+            onclose = { fromstate.value = false },
+            viewModel
         )
+    }
+
+    if(!restrictState.once){
+        val query= "SELECT * FROM user"
+        val init= blockerState.connection.prepareStatement(query)
+        val rs = init.executeQuery()
+
+        while(rs.next()){
+            if(rs.getString("RestrictFrom")!=null){
+                viewModel.updateRun(rs.getString("RestrictFrom"),rs.getString("RestrictTo"))
+                viewModel.once()
+            }
+        }
+        init.close()
     }
 
     MaterialTheme() {
@@ -132,7 +149,7 @@ fun restrict(
                                     ),
                                 ) {
                                     Text(
-                                        ""
+                                        restrictState.from
                                     )
                                 }
                             }
@@ -217,7 +234,7 @@ fun restrict(
                                     ),
                                 ) {
                                     Text(
-                                        "00:00"
+                                        restrictState.to
                                     )
                                 }
                             }
@@ -252,7 +269,9 @@ fun restrict(
                 colors = ButtonDefaults.buttonColors(
                     backgroundColor = Colors().buttonColor
                 ),
-                onClick = {}
+                onClick = {
+
+                }
             ) {
                 Text(
                     text = "Restrict",

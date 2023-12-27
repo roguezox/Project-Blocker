@@ -36,7 +36,7 @@ fun App(){
 fun main() = application {
     val homeModel = remember { homeModel() }
     val blockerModel= remember { blockerModel() }
-    val restricModel= remember { restrictModel() }
+    val restrictModel= remember { restrictModel() }
 
     Window(
         onCloseRequest = ::exitApplication,
@@ -458,7 +458,7 @@ fun main() = application {
                             enter = fadeIn(initialAlpha = 0f),
                             exit = fadeOut(),
                         ) {
-                            restrict(restricModel)
+                            restrict(restrictModel,blockerModel)
                         }
                     }
 

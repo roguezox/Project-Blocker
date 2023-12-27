@@ -1,6 +1,7 @@
 package data.restrict
 
 data class restrictState(
-    val from: String="",
-    val to: String=""
+    val once:Boolean= false,
+    val from:String="00:00",
+    val to: String="00:00"
 )
