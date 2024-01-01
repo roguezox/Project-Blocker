@@ -37,26 +37,29 @@ fun restrict(
     if (tostate.value) {
         restrictDialog().restrictToDialog(
             onclose = { tostate.value = false },
-            viewModel
+            viewModel,
+            restrictState.to
         )
     }
     if (fromstate.value) {
         restrictDialog().restrictFromDialog(
             onclose = { fromstate.value = false },
-            viewModel
+            viewModel,
+            restrictState.from
         )
     }
 
     if(!restrictState.once){
-        val query= "SELECT * FROM user"
+        val query= "SELECT * FROM userTime"
         val init= blockerState.connection.prepareStatement(query)
         val rs = init.executeQuery()
 
         while(rs.next()){
-            if(rs.getString("RestrictFrom")!=null){
+            if(rs.getString("RestrictFrom")!=null&&rs.getString("RestrictTo")!=null){
                 viewModel.updateRun(rs.getString("RestrictFrom"),rs.getString("RestrictTo"))
                 viewModel.once()
             }
+
         }
         init.close()
     }
@@ -102,7 +105,10 @@ fun restrict(
                             Button(
                                 modifier = Modifier.width((width * 0.025).dp).fillMaxHeight(),
                                 onClick = {
-
+                                    if(restrictState.from.split(":")[0].toInt()>0){
+                                        val newText= "${restrictState.from.split(":")[0].toInt()-1}:${restrictState.from.split(":")[1]}"
+                                        viewModel.quickShiftFrom(newText)
+                                    }
                                 },
                                 colors = ButtonDefaults.buttonColors(
                                     backgroundColor = Color.Transparent,
@@ -155,7 +161,12 @@ fun restrict(
                             }
                             IconButton(
                                 modifier = Modifier.width((width * 0.025).dp),
-                                onClick = {},
+                                onClick = {
+                                          if(restrictState.from.split(":")[0].toInt()<24){
+                                              val newText= "${restrictState.from.split(":")[0].toInt()+1}:${restrictState.from.split(":")[1]}"
+                                              viewModel.quickShiftFrom(newText)
+                                          }
+                                },
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Add,
@@ -190,7 +201,10 @@ fun restrict(
                             Button(
                                 modifier = Modifier.width((width * 0.025).dp).fillMaxHeight(),
                                 onClick = {
-
+                                    if(restrictState.to.split(":")[0].toInt()>0){
+                                        val newText= "${restrictState.to.split(":")[0].toInt()-1}:${restrictState.to.split(":")[1]}"
+                                        viewModel.quickShiftTo(newText)
+                                    }
                                 },
                                 colors = ButtonDefaults.buttonColors(
                                     backgroundColor = Color.Transparent,
@@ -240,7 +254,12 @@ fun restrict(
                             }
                             IconButton(
                                 modifier = Modifier.width((width * 0.025).dp),
-                                onClick = {},
+                                onClick = {
+                                    if(restrictState.to.split(":")[0].toInt()<24){
+                                        val newText= "${restrictState.to.split(":")[0].toInt()+1}:${restrictState.to.split(":")[1]}"
+                                        viewModel.quickShiftTo(newText)
+                                    }
+                                },
                             ) {
                                 Icon(
                                     imageVector = Icons.Default.Add,

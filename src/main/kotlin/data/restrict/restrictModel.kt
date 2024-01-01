@@ -1,5 +1,4 @@
 package data.restrict
-
 import data.blocker.blockerState
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,12 +23,16 @@ class restrictModel: ViewModel() {
         _restrictState.update { it->
             it.copy(
                 from=from,
-                to=to
+                to=to,
+                fromH = from.split(":")[0],
+                fromM = from.split(":")[1],
+                toH = to.split(":")[0],
+                toM = to.split(":")[1]
             )
         }
     }
     fun savefrom(from:String){
-        val statement = "UPDATE user SET RestrictFrom ='$from' WHERE "+ "\"index\"" +" =1"
+        val statement = "UPDATE userTime SET RestrictFrom ='$from' WHERE "+ "\"index\"" +" =1"
         val prep= blockerState.value.connection.prepareStatement(statement)
         prep.execute()
         prep.close()
@@ -44,7 +47,9 @@ class restrictModel: ViewModel() {
     }
 
     fun saveto(to:String){
-        val statement = "UPDATE user SET RestrictTo ='$to' WHERE "+ "\"index\"" +" =1"
+
+
+        val statement = "UPDATE userTime SET RestrictTo ='$to' WHERE "+ "\"index\"" +" =1"
         val prep= blockerState.value.connection.prepareStatement(statement)
         prep.execute()
         prep.close()
@@ -53,5 +58,29 @@ class restrictModel: ViewModel() {
         }
     }
 
+    fun quickShiftFrom(newtext:String){
+        val statement = "UPDATE userTime SET RestrictFrom ='$newtext' WHERE "+ "\"index\"" +" =1"
+        val prep= blockerState.value.connection.prepareStatement(statement)
+        prep.execute()
+        prep.close()
+        _restrictState.update { it ->
+            it.copy(from=newtext)
+        }
+    }
+    fun quickShiftTo(newtext: String){
+        val statement = "UPDATE userTime SET RestrictTo ='$newtext' WHERE "+ "\"index\"" +" =1"
+        val prep= blockerState.value.connection.prepareStatement(statement)
+        prep.execute()
+        prep.close()
+        _restrictState.update { it ->
+            it.copy(
+                to = newtext
+            )
+        }
+    }
+
+
+
 
 }
+

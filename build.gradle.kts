@@ -23,6 +23,7 @@ dependencies {
     // With compose.desktop.common you will also lose @Preview functionality
     implementation("com.lordcodes.turtle:turtle:0.8.0")
     implementation ("org.apache.commons:commons-exec:1.3")
+    implementation("commons-net:commons-net:3.10.0")
 
     implementation("org.jetbrains.skiko:skiko-awt-runtime-windows-x64:0.7.70")
     api("dev.icerock.moko:mvvm-core:0.16.1") // only ViewModel, EventsDispatcher, Dispatchers.UI

@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import mitmInterfaces.mitmInterface
+import methods.mitmInterfaces.mitmInterface
 import org.apache.commons.exec.CommandLine
 import org.apache.commons.exec.DefaultExecutor
 import java.net.Inet4Address

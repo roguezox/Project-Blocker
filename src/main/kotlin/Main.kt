@@ -52,8 +52,8 @@ fun main() = application {
         val viewModel = remember { mainModel() }
         val stateModel by viewModel.mainState.collectAsState()
 
-        var visible by remember { mutableStateOf(true) }
 
+        homeModel.defaultDisconnect()
 
         MaterialTheme {
 

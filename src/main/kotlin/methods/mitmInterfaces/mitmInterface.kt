@@ -1,4 +1,4 @@
-package mitmInterfaces
+package methods.mitmInterfaces
 
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -46,7 +46,7 @@ class mitmInterface : ViewModel() {
                         val path=System.getProperty("user.home")
                         val proc = CommandLine(path+"/Downloads/mitmproxy-10.0.0-windows/mitmdump.exe")
                         proc.addArgument("--listen-port")
-                        proc.addArgument("7878")
+                        proc.addArgument("7880")
                         val executor = DefaultExecutor()
                         executor.execute(proc)
                     } else{
