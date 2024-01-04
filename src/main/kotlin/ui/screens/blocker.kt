@@ -1,8 +1,4 @@
 package ui.screens
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.MutableTransitionState
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -16,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import components.alertDialog.alertDialog
 import components.button.button
 import data.blocker.blockerListModel
 import data.blocker.blockerModel
@@ -70,7 +67,9 @@ fun blocker(
 
 
     if(snackstate.value){
-        dialog(
+        alertDialog(
+            title = "Duplicate Value!",
+            text = "The value already exists",
             onDismiss = { snackstate.value = false }
         )
     }
@@ -222,36 +221,5 @@ fun blocker(
 
 
 }
-@OptIn(ExperimentalMaterialApi::class)
-@Composable
-fun dialog(onDismiss: () -> Unit) {
-    // Your dialog content
-    AnimatedVisibility(
-        visibleState = MutableTransitionState(
-            initialState = false
-        ).apply { targetState = true },
-        modifier = Modifier,
-        enter = fadeIn(initialAlpha = 0f),
-        exit = fadeOut(),
-    ) {
-        AlertDialog(
-            backgroundColor = Color(0xff555555),
-            onDismissRequest = onDismiss,
-            title = { Text("Duplicate Value!") },
-            shape = RoundedCornerShape(20.dp),
-            text = { Text("The database already contains this value") },
-            confirmButton = {
-                Button(onClick = onDismiss,
-                    colors = ButtonDefaults.buttonColors(
-                        backgroundColor = Colors().buttonColor
-                    ),
-                    shape = RoundedCornerShape(40.dp)
-                ) {
-                    Text("Dismiss",
-                        style = RoveTypography.body1)
-                }
-            }
-        )
-    }
-}
+
 

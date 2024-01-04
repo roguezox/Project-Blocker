@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import components.alertDialog.alertDialog
 import data.blocker.blockerModel
 import data.home.homeModel
 import data.main.mainModel
@@ -38,6 +39,8 @@ fun main() = application {
     val blockerModel= remember { blockerModel() }
     val restrictModel= remember { restrictModel() }
 
+
+
     Window(
         onCloseRequest = ::exitApplication,
         title = "Blocker",
@@ -51,9 +54,16 @@ fun main() = application {
         window.maximumSize = Dimension(width, height)
         val viewModel = remember { mainModel() }
         val stateModel by viewModel.mainState.collectAsState()
+        val snackState = remember { mutableStateOf(false) }
+        if(stateModel.invalid){
+            alertDialog(
+                title = "Inavlid Time Range!",
+                text = "Check the time range entered",
+                onDismiss = {snackState.value=false}
+            )
+        }
 
-
-        homeModel.defaultDisconnect()
+        homeModel.defaultDisconnect(false)
 
         MaterialTheme {
 
@@ -434,7 +444,7 @@ fun main() = application {
                             enter = fadeIn(initialAlpha = 0f),
                             exit = fadeOut(),
                         ) {
-                            home(homeModel)
+                            home(homeModel,blockerModel)
                         }
                     } else if (stateModel.blocker) {
                         AnimatedVisibility(

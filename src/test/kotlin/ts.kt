@@ -23,6 +23,7 @@ fun main() {
 
     val ntpTime = info.message.transmitTimeStamp.time
     val time = Time(ntpTime)
+    print(time.toLocalTime())
 
 
 
